@@ -3,8 +3,8 @@
 
 <template>
   <div>
-    <h1>Bekzod</h1>
-    <h1>Bekzod</h1>
+    <router-view> </router-view>
+
   </div>
 </template>
 
