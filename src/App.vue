@@ -4,7 +4,7 @@
 <template>
   <div>
     <h1>Bekzod</h1>
-    <router-view />
+    <h1>Bekzod</h1>
   </div>
 </template>
 
