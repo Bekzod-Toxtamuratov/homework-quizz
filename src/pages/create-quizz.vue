@@ -1,0 +1,88 @@
+<template class="">
+	<div class=" bg-[url('/4.jpg')]">
+
+		<div class="container ">
+			<h1 class="text-[70px] font-bold my-5 text-center ">create-quizz</h1>
+			<div class="">
+				<input v-model="newQuizz.theme" class="border py-3 px-5 rounded w-full text-4xl focus:outline-none focus:border-primary" type="text" name="" id="" placeholder="theme...">
+				<div class=" bg-[url('/1.jpg')]  mt-[40px] border border-primary p-5" v-for="question in newQuizz.questions" :key="question.id">
+					<input v-model="question.question" class="pl-4  mb-4 border py-3 rounded w-full focus:outline-none text-2xl focus:border-primary" type="text" placeholder="question . . . ">
+					<div class="p-2" v-for="answer in question.optionals" :key="answer.id">
+						<div class="inline-flex text-xl items-center cursor-pointer gap-4 flex-row-reverse">
+							<button  class="bg-[green] text-white py-3 px-4 rounded-md hover:shadow-md"   @click="removeOptional(question.id, answer.id)" v-if="question.optionals.length > 2">Remove</button>
+							<input    v-model="answer.text" class="pl-4   border py-3 rounded w-full focus:outline-none text-2xl focus:border-primary" type="text" placeholder="optional . . . ">
+							<input class="bg-[blue] w-5 h-5" :id="`${question.id}-${answer.id}`" type="radio" :name="question.id" v-model="question.answer" :value="answer.id">
+						</div>
+					</div>
+					<button v-if="question.optionals.length < 4" @click="addOptional(question.id)" class="mt-3 py-3 px-2 bg-primary text-white rounded">Add optional</button>
+				</div>
+			</div>
+			<div class="flex justify-end mt-5 gap-5">
+				<button @click="addQuizz" class="py-3 px-4 bg-primary text-white rounded hover:bg-[blue] hover:text-primary">Add Question</button>
+				<button @click="removeLastQuizz" class="py-3 px-4 bg-primary text-white rounded hover:bg-[blue] hover:text-primary">Remove Last Question</button>
+				<button class="py-3 px-4 bg-primary text-white rounded hover:bg-[blue] hover:text-primary">Save</button>
+			</div>
+		</div>
+	</div>
+	</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const newQuizz = ref({
+  id: new Date().toISOString(),
+  theme: '',
+  questions: [
+    {
+      id: 1,
+      question: '',
+      optionals: [
+        { id: 1, text: '' },
+        { id: 2, text: '' }
+      ],
+      answer: 0
+    }
+  ]
+})
+
+const addOptional = (questionId) => {
+  const question = newQuizz.value.questions.find(q => q.id === questionId)
+  if (question) {
+    question.optionals.push({ id: question.optionals.length + 1, text: '' })
+  }
+}
+
+const removeOptional = (questionId, answerId) => {
+  const question = newQuizz.value.questions.find(q => q.id === questionId)
+  if (question) {
+    const index = question.optionals.findIndex(o => o.id === answerId)
+    if (index !== -1) {
+      question.optionals.splice(index, 1)
+    }
+  }
+}
+
+const addQuizz = () => {
+  const newQuestion = {
+    id: newQuizz.value.questions.length + 1,
+    question: '',
+    optionals: [
+      { id: 1, text: '' },
+      { id: 2, text: '' }
+    ],
+    answer: 0
+  }
+  newQuizz.value.questions.push(newQuestion)
+}
+
+const removeLastQuizz = () => {
+  if (newQuizz.value.questions.length > 1) {
+    newQuizz.value.questions.pop()
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+
+</style>
