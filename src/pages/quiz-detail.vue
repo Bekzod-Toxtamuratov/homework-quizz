@@ -1,6 +1,5 @@
 <template>
 	<div class="container flex flex-col gap-5">
-		<h2 class="text-[50px] text-center">Bekzod</h2>
 		<div v-if="currentQuiz">
 			<h1 class="text-3xl text-center font-semibold my-5">
 				{{ currentQuiz.theme }}
@@ -62,7 +61,7 @@
 		</div> -->
 		<button
 			@click="calculateScore"
-			class="mt-8 py-4 px-7 text-2xl bg-primary text-white rounded"
+			class="mt-8 py-3  w-40  text-2xl bg-primary text-white rounded-lg"
 		>
 			Your Answer
 		</button>

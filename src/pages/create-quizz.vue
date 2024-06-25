@@ -13,8 +13,11 @@
 							<input class="bg-[blue] w-5 h-5" :id="`${question.id}-${answer.id}`" type="radio"  @change="bek(question.id, answer.id)"   :name="question.id" v-model="question.answer" :value="answer.id">
 						</div>
 					</div>
-					<button v-if="question.optionals.length < 4" @click="addOptional(question.id)" class="mt-3 py-3 px-2 bg-primary text-white rounded">Add Optional</button>
-					<button @click="removeQuizz(qIndex)" class="mt-3 py-3 px-2 bg-red-500 text-white rounded">Remove Question</button>
+					<div class="flex gap-5 justify-between">
+
+						<button v-if="question.optionals.length < 4" @click="addOptional(question.id)" class="mt-3 py-3 px-2 bg-primary text-white rounded">Add Optional</button>
+						<button @click="removeQuizz(qIndex)" class="mt-3 py-3 px-2 bg-red-500 text-white rounded">Remove Question</button>
+					</div>
 				</div>
 			</div>
 			<div class="flex justify-end mt-5 gap-5">
