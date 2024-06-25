@@ -9,11 +9,15 @@
 				:key="question.id"
 			>
 				<h2 class="text-3xl font-bold my-5">
-					{{ qIndex + 1 }}.1{{ question.question }}
+					{{ qIndex + 1 }}.{{ question.question }}
 				</h2>
-				<div class="mt-3 flex flex-col" v-for="answer in question.optionals" :key="answer.id">
+				<div
+					class="mt-3 flex flex-col"
+					v-for="answer in question.optionals"
+					:key="answer.id"
+				>
 					<label
-						class="hover:bg-primary  py-3 px-2  text-xl items-center cursor-pointer gap-4 flex-row-reverse"
+						class="hover:bg-primary py-3 px-2 text-xl items-center cursor-pointer gap-4 flex-row-reverse"
 						:for="`${question.id}-${answer.id}`"
 					>
 						{{ answer.text }}
@@ -61,7 +65,7 @@
 		</div> -->
 		<button
 			@click="calculateScore"
-			class="mt-8 py-3  w-40  text-2xl bg-primary text-white rounded-lg"
+			class="mt-8 py-3 w-40 text-2xl bg-primary text-white rounded-lg"
 		>
 			Your Answer
 		</button>
@@ -106,7 +110,11 @@ const calculateScore = () => {
 	if (!currentQuiz.value) return
 	count.value = 0
 	currentQuiz.value.questions.forEach(question => {
-		console.log('question.userAnswer,question.answer', question.userAnswer,question.answer)
+		console.log(
+			'question.userAnswer,question.answer',
+			question.userAnswer,
+			question.answer
+		)
 		if (question.answer === question.userAnswer) {
 			count.value++
 		}
