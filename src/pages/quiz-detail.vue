@@ -9,11 +9,11 @@
 				:key="question.id"
 			>
 				<h2 class="text-3xl font-bold my-5">
-					{{ qIndex + 1 }}.{{ question.question }}
+					{{ qIndex + 1 }}.1{{ question.question }}
 				</h2>
-				<div class="mt-3" v-for="answer in question.optionals" :key="answer.id">
+				<div class="mt-3 flex flex-col" v-for="answer in question.optionals" :key="answer.id">
 					<label
-						class="inline-flex text-xl items-center cursor-pointer gap-4 flex-row-reverse"
+						class="hover:bg-primary  py-3 px-2  text-xl items-center cursor-pointer gap-4 flex-row-reverse"
 						:for="`${question.id}-${answer.id}`"
 					>
 						{{ answer.text }}
