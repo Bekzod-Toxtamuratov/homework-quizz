@@ -10,7 +10,7 @@
 						<div class="inline-flex text-xl items-center cursor-pointer gap-4 flex-row-reverse">
 							<button class="bg-[green] text-white py-3 px-4 rounded-md hover:shadow-md" @click="removeOptional(question.id, answer.id)" v-if="question.optionals.length > 2">Remove</button>
 							<input v-model="answer.text" class="pl-4 border py-3 rounded w-full focus:outline-none text-2xl focus:border-primary" type="text" placeholder="Optional...">
-							<input class="bg-[blue] w-5 h-5" :id="`${question.id}-${answer.id}`" type="radio" :name="question.id" v-model="question.answer" :value="answer.id">
+							<input class="bg-[blue] w-5 h-5" :id="`${question.id}-${answer.id}`" type="radio"  @change="bek(question.id,answer.id)"   :name="question.id" v-model="question.answer" :value="answer.id">
 						</div>
 					</div>
 					<button v-if="question.optionals.length < 4" @click="addOptional(question.id)" class="mt-3 py-3 px-2 bg-primary text-white rounded">Add Optional</button>
@@ -32,6 +32,19 @@ import { usePiniaStore } from '../store/pinia'
 
 const pinaStore = usePiniaStore()
 const router = useRouter()
+
+
+const bek=(questionId,answerId)=>{
+	const question = newQuizz.value.questions.find(q => q.id === questionId)
+	console.log(question);
+     if (question) {
+          const index = question.optionals.find(o => o.id === answerId)
+		newQuizz.value.questions.answer = index.text
+		
+		console.log(newQuizz.value.questions.answer);
+     }
+}
+
 
 const newQuizz = ref({
 	id: new Date().toISOString(),

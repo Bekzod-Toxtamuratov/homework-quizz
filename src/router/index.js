@@ -96,6 +96,11 @@ const router = createRouter({
 					name: 'create-quizz',
 					component: () => import('@/pages/create-quizz.vue'),
 				},
+				{
+					path: '/quizz',
+					name: 'quizz',
+					component: () => import('@/components/QuizzApp.vue'),
+				},
 			],
 		},
 		{
